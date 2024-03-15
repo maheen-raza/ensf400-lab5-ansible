@@ -12,7 +12,6 @@ services:
     ports: # mapping container port to host ports for Web and SSH
       - "3000:3000"
       - "2223:2223"
-
   managedhost-app-2:
     build: 
       context: managed-host/alpine/app2
@@ -38,3 +37,10 @@ services:
     ports: # mapping container port to host ports for Web and SSH
       - "3002:3000"
       - "2225:2225"
+
+  loadbalancer:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
