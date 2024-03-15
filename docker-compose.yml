@@ -1,5 +1,4 @@
 version: "3.7"
-
 services:
   managedhost-app-1:
     build: 
@@ -8,6 +7,12 @@ services:
     network_mode: "bridge"
     environment:
       - SSH_ENABLE_ROOT=true
+    volumes:
+      - ./secrets/id_rsa_container.pub:/root/.ssh/authorized_keys # mounting the public key from the host to the container
+    ports: # mapping container port to host ports for Web and SSH
+      - "3000:3000"
+      - "2223:2223"
+
   managedhost-app-2:
     build: 
       context: managed-host/alpine/app2
@@ -15,6 +20,12 @@ services:
     network_mode: "bridge"
     environment:
       - SSH_ENABLE_ROOT=true
+    volumes:
+      - ./secrets/id_rsa_container.pub:/root/.ssh/authorized_keys # mounting the public key from the host to the container
+    ports: # mapping container port to host ports for Web and SSH
+      - "3001:3000"
+      - "2224:2224"
+  
   managedhost-app-3:
     build: 
       context: managed-host/alpine/app3
@@ -22,3 +33,8 @@ services:
     network_mode: "bridge"
     environment:
       - SSH_ENABLE_ROOT=true
+    volumes:
+      - ./secrets/id_rsa_container.pub:/root/.ssh/authorized_keys # mounting the public key from the host to the container
+    ports: # mapping container port to host ports for Web and SSH
+      - "3002:3000"
+      - "2225:2225"
