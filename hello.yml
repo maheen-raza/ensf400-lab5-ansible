@@ -49,7 +49,7 @@
     command: forever start /node-app/app.js
     when: "forever_list.stdout.find('/node-app/app.js') == -1"
 
-# For assignment 2:
+# Third Play For assignment 2:
 - name: Play - Install and configure Nginx as a LoadBalancer
   hosts: localhost
   become: yes
@@ -61,20 +61,16 @@
       apt:
         name: nginx
         state: present
-
     - name: Copy the Nginx config file to /etc/nginx/sites-available
       copy:
         src: nginx.conf
         dest: /etc/nginx/sites-available
       become: yes
-
     - name: Create symlink of the config file at /etc/nginx/sites-enabled
       file:
         src: /etc/nginx/sites-available/nginx.conf
         dest: /etc/nginx/sites-enabled/nginx.conf
         state: link
-      become: yes
-
     - name: Restart nginx to apply changes
       service:
         name: nginx
