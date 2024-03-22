@@ -70,7 +70,7 @@
     - name: Create symlink of the config file at /etc/nginx/sites-enabled
       file:
         src: /etc/nginx/sites-available/nginx.conf
-        dest: /etc/nginx/sites-enabled/nginx.conf
+        dest: /etc/nginx/sites-enabled/default
         state: link
     - name: Restart nginx to apply changes
       service:
