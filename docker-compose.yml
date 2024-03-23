@@ -1,3 +1,4 @@
+# Editor: Maheen Raza
 version: "3.7"
 services:
   managedhost-app-1:
@@ -39,9 +40,9 @@ services:
       - "3002:3000"
       - "2225:2225"
 
-  loadbalancer:
-    image: nginx:latest
+  loadbalancer: # defining our nginx load balancer service
+    image: nginx:latest # will pull the latest version of the nginx image
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # mounting our volumes to the container
     ports:
-      - "80:80"
+      - "80:80" # mapping host port 80 to container port 80

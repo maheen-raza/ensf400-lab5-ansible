@@ -1,4 +1,4 @@
-# Uninstall Nginx
+# Uninstall Nginx - Was having trouble before
 - name: Play - Uninstall Nginx
   hosts: localhost
   become: yes

@@ -1,8 +1,9 @@
+# Author: Maheen Raza
 from ansible_runner.interface import run_command
 import yaml
 
 with open("hosts.yml") as f: # open the inventory file "hosts.yml" in our directory
-    inventory_file = yaml.full_load(f) # load the entire inventory file
+    inventory_file = yaml.full_load(f) # load the entire hosts file
 
 for group, hosts in inventory_file.items():
     print(f"Group: {group}") # print out the group name
